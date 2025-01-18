@@ -133,11 +133,18 @@ end
 
 # Commande fetch
 function mfish_fetch
-    set -l fetch_cmd (__mfish_get_profile_var "MailFetchCommand")
-    set -l fetch_sleep (__mfish_get_profile_var "MailFetchSleep")
-    set -l fetch_sleep (or $fetch_sleep 30)  # Valeur par défaut
-    set -l fetch_cmd (or $fetch_cmd "fdm fetch")  # Commande par défaut
-    echo $argv
+    set -l fetch_cmd (__mfish_get_profile_var MailFetchCommand)
+    set -l fetch_sleep (__mfish_get_profile_var MailFetchSleep)
+
+    # Si fetch_sleep n'existe pas ou est vide, définir une valeur par défaut
+    if not set -q fetch_sleep
+       set fetch_sleep 30
+    end
+
+    # Si fetch_cmd n'existe pas ou est vide, définir une commande par défaut
+    if not set -q fetch_cmd
+       set fetch_cmd "You should install fdm"
+    end
     if test $argv[1] = "--daemon"
         while true
             eval $fetch_cmd
