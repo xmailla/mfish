@@ -145,17 +145,22 @@ function mfish_fetch
     if not set -q fetch_cmd
        set fetch_cmd "You should install fdm"
     end
-    if test $argv[1] = "--daemon"
+
+    if contains -- "--daemon" $argv
         while true
+	    echo "INFO: fetching new mails..."
             eval $fetch_cmd
+	    echo "INFO: indexing new mails..."
             mfish_index
-	    echo "Sleeping..."
+	    echo "INFO:Sleeping..."
             sleep $fetch_sleep
         end
     else
-        eval $fetch_cmd
-	echo "Sleeping..."
+	echo "INFO: fetching new mails..."
+	eval $fetch_cmd
+	echo "INFO: indexing new mails..."
         mfish_index
+	echo "INFO: exiting"
     end
 end
 
