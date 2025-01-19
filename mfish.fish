@@ -1,8 +1,9 @@
 #!/usr/bin/env fish
+
 # =============================================================================
 # mfish - A plugin for managing email workflows with mblaze and Fish shell
 #
-# Copyright (C) 2025 <Votre Nom ou Pseudonyme>
+# Copyright (C) 2025 Xavier Maillard <x@maillard.im>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
